@@ -67,13 +67,14 @@ service.interceptors.response.use(
       return response.data;
     }
   },
-  error => {
+  error => {//如果后面有覆盖Message，则这里的Message不会生效。
+    const data=error.response.data.detail
     Message({
-      type: 'warning',
+      type: 'error',
       showClose: true,
-      message: '连接超时'
+      message:data.msg
     })
-    return Promise.reject('error')
+    return Promise.reject(error.response)//默认情况下后面不再需要处理大部分报错信息.
   })
 
 export default service

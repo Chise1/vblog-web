@@ -34,6 +34,7 @@
 </template>
 
 <script>
+  import {login} from '@/api/login'
   export default {
     name: 'Login',
     data() {
@@ -57,20 +58,11 @@
     methods: {
       login(formName) {
         let that = this
-
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            that.$store.dispatch('login', that.userForm).then(() => {
+        login(that.userForm.account,that.userForm.password).then(
+          () => {
               that.$router.go(-1)
-            }).catch((error) => {
-              if (error !== 'error') {
-                that.$message({message: error, type: 'error', showClose: true});
-              }
-            })
-          } else {
-            return false;
-          }
-        });
+            }
+        )
       }
     }
   }
