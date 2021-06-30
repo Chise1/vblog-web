@@ -58,73 +58,83 @@
     methods: {
       login(formName) {
         let that = this
-        login(that.userForm.account,that.userForm.password).then(
-          () => {
+
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            that.$store.dispatch('login', that.userForm).then(() => {
               that.$router.go(-1)
-            }
-        )
+            }).catch((error) => {
+              if (error !== 'error') {
+                console.log("error")
+                // that.$message({message: error, type: 'error', showClose: true});
+              }
+            })
+          } else {
+            return false;
+          }
+        });
       }
     }
   }
 </script>
 
 <style scoped>
-  #login {
-    min-width: 100%;
-    min-height: 100%;
-  }
+#login {
+  min-width: 100%;
+  min-height: 100%;
+}
 
-  .me-video-player {
-    background-color: transparent;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    display: block;
-    position: absolute;
-    left: 0;
-    z-index: 0;
-    top: 0;
-  }
+.me-video-player {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  position: absolute;
+  left: 0;
+  z-index: 0;
+  top: 0;
+}
 
-  .me-login-box {
-    position: absolute;
-    width: 300px;
-    height: 260px;
-    background-color: white;
-    margin-top: 150px;
-    margin-left: -180px;
-    left: 50%;
-    padding: 30px;
-  }
+.me-login-box {
+  position: absolute;
+  width: 300px;
+  height: 260px;
+  background-color: white;
+  margin-top: 150px;
+  margin-left: -180px;
+  left: 50%;
+  padding: 30px;
+}
 
-  .me-login-box-radius {
-    border-radius: 10px;
-    box-shadow: 0px 0px 1px 1px rgba(161, 159, 159, 0.1);
-  }
+.me-login-box-radius {
+  border-radius: 10px;
+  box-shadow: 0px 0px 1px 1px rgba(161, 159, 159, 0.1);
+}
 
-  .me-login-box h1 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    vertical-align: middle;
-  }
+.me-login-box h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  vertical-align: middle;
+}
 
-  .me-login-design {
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-  }
+.me-login-design {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+}
 
-  .me-login-design-color {
-    color: #5FB878 !important;
-  }
+.me-login-design-color {
+  color: #5FB878 !important;
+}
 
-  .me-login-button {
-    text-align: center;
-  }
+.me-login-button {
+  text-align: center;
+}
 
-  .me-login-button button {
-    width: 100%;
-  }
+.me-login-button button {
+  width: 100%;
+}
 
 </style>

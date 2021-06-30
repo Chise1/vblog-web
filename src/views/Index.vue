@@ -78,6 +78,7 @@
         })
       },
       listArchives() {
+        let that=this
         listArchives().then((data => {
           this.archives = data.data
         })).catch(error => {

@@ -35,11 +35,15 @@ export default new Vuex.Store({
     login({commit}, user) {
       return new Promise((resolve, reject) => {
         login(user.account, user.password).then(data => {
-          commit('SET_TOKEN', data.data['Oauth-Token'])
-          setToken(data.data['Oauth-Token'])
+          console.log(data)
+
+          commit('SET_TOKEN', data['Bearer'])
+          setToken(data['Bearer'])
           resolve()
         }).catch(error => {
-          reject(error)
+          console.log(error)
+          console.log("error")
+          // reject(error)
         })
       })
     },
@@ -62,6 +66,13 @@ export default new Vuex.Store({
           }
           resolve(data)
         }).catch(error => {
+          //如果获取用户信息失败，则自动退出登录，防止出现死循环
+          commit('SET_TOKEN', '')
+          commit('SET_ACCOUNT', '')
+          commit('SET_NAME', '')
+          commit('SET_AVATAR', '')
+          commit('SET_ID', '')
+          removeToken()
           reject(error)
         })
       })
@@ -100,8 +111,8 @@ export default new Vuex.Store({
     register({commit}, user) {
       return new Promise((resolve, reject) => {
         register(user.account, user.nickname, user.password).then((data) => {
-          commit('SET_TOKEN', data.data['Oauth-Token'])
-          setToken(data.data['Oauth-Token'])
+          commit('SET_TOKEN', data.data['Bearer'])
+          setToken(data.data['Bearer'])
           resolve()
         }).catch((error) => {
           reject(error)
