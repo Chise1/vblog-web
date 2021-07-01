@@ -35,14 +35,11 @@ export default new Vuex.Store({
     login({commit}, user) {
       return new Promise((resolve, reject) => {
         login(user.account, user.password).then(data => {
-          console.log(data)
-
           commit('SET_TOKEN', data['Bearer'])
           setToken(data['Bearer'])
           resolve()
         }).catch(error => {
           console.log(error)
-          console.log("error")
           // reject(error)
         })
       })
@@ -52,11 +49,11 @@ export default new Vuex.Store({
       let that = this
       return new Promise((resolve, reject) => {
         getUserInfo().then(data => {
-          if (data.data) {
-            commit('SET_ACCOUNT', data.data.account)
-            commit('SET_NAME', data.data.nickname)
-            commit('SET_AVATAR', data.data.avatar)
-            commit('SET_ID', data.data.id)
+          if (data) {
+            commit('SET_ACCOUNT', data.account)
+            commit('SET_NAME', data.nickname)
+            commit('SET_AVATAR', data.avatar)
+            commit('SET_ID', data.id)
           } else {
             commit('SET_ACCOUNT', '')
             commit('SET_NAME', '')
@@ -111,8 +108,8 @@ export default new Vuex.Store({
     register({commit}, user) {
       return new Promise((resolve, reject) => {
         register(user.account, user.nickname, user.password).then((data) => {
-          commit('SET_TOKEN', data.data['Bearer'])
-          setToken(data.data['Bearer'])
+          commit('SET_TOKEN', data['Bearer'])
+          setToken(data['Bearer'])
           resolve()
         }).catch((error) => {
           reject(error)

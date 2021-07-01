@@ -11,7 +11,7 @@ const service = axios.create({
 //request拦截器
 service.interceptors.request.use(config => {
   if (store.state.token) {
-    config.headers['Bearer'] = getToken()
+    config.headers['Authorization'] ="Bearer "+ getToken()
   }
   return config
 }, error => {
@@ -31,6 +31,7 @@ service.interceptors.response.use(
   },
   error => {//如果后面有覆盖Message，则这里的Message不会生效。
     const data = error.response.data.detail
+    console.log(error)
     Message({
       type: 'error',
       showClose: true,

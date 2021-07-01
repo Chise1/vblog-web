@@ -85,7 +85,7 @@
       getCategorys() {
         let that = this
         getAllCategorysDetail().then(data => {
-          that.categorys = data.data
+          that.categorys = data
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '文章分类加载失败', showClose: true})
@@ -95,7 +95,7 @@
       getTags() {
         let that = this
         getAllTagsDetail().then(data => {
-          that.tags = data.data
+          that.tags = data
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '标签加载失败', showClose: true})

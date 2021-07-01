@@ -78,7 +78,7 @@
       getCategoryDetail(id) {
         let that = this
         getCategoryDetail(id).then(data => {
-          that.ct = data.data
+          that.ct = data
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '文章分类加载失败', showClose: true})
@@ -88,7 +88,7 @@
       getTagDetail(id) {
         let that = this
         getTagDetail(id).then(data => {
-          that.ct = data.data
+          that.ct = data
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '标签加载失败', showClose: true})
@@ -98,7 +98,7 @@
       getArticlesByCategory(id) {
         let that = this
         getArticlesByCategory(id).then(data => {
-          that.articles = data.data
+          that.articles = data
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '文章加载失败', showClose: true})
@@ -108,7 +108,7 @@
       getArticlesByTag(id) {
         let that = this
         getArticlesByTag(id).then(data => {
-          that.articles = data.data
+          that.articles = data
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '文章加载失败', showClose: true})

@@ -71,7 +71,7 @@
       },
       listArchives() {
         listArchives().then((data => {
-          this.archives = data.data
+          this.archives = data
         })).catch(error => {
           that.$message({type: 'error', message: '文章归档加载失败!', showClose: true})
         })

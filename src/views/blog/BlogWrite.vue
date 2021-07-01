@@ -152,8 +152,8 @@
       getArticleById(id) {
         let that = this
         getArticleById(id).then(data => {
-          Object.assign(that.articleForm, data.data)
-          that.articleForm.editor.value = data.data.content
+          Object.assign(that.articleForm, data)
+          that.articleForm.editor.value = data.content
 
           let tags = this.articleForm.tags.map(function (item) {
             return item.id;
@@ -215,7 +215,7 @@
             publishArticle(article).then((data) => {
               loading.close();
               that.$message({message: '发布成功啦', type: 'success', showClose: true})
-              that.$router.push({path: `/view/${data.data.articleId}`})
+              that.$router.push({path: `/view/${data.articleId}`})
             }).catch((error) => {
               loading.close();
               if (error !== 'error') {
@@ -239,7 +239,7 @@
       getCategorysAndTags() {
         let that = this
         getAllCategorys().then(data => {
-          that.categorys = data.data
+          that.categorys = data
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '文章分类加载失败', showClose: true})
@@ -247,7 +247,7 @@
         })
 
         getAllTags().then(data => {
-          that.tags = data.data
+          that.tags = data
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '标签加载失败', showClose: true})

@@ -102,7 +102,7 @@
           if(!that.comment.childrens){
             that.comment.childrens = []
           }
-          that.comment.childrens.unshift(data.data)
+          that.comment.childrens.unshift(data)
           that.$emit('commentCountsIncrement')
           that.showComment(that.commentShowIndex)
         }).catch(error => {
