@@ -31,7 +31,6 @@
 
       <el-col :span="4" offset="0">
         <el-menu :router=true menu-trigger="click" mode="horizontal" active-text-color="#5FB878">
-          <p>{{user.login}}</p>
           <template v-if="!user.login">
             <el-menu-item index="/login">
               <el-button type="text">登录</el-button>

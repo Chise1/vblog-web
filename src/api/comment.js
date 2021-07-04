@@ -9,10 +9,18 @@ export function getCommentsByArticle(id) {
 }
 
 export function publishComment(comment) {
+  comment.article = comment.article.id
+  console.log(comment)
+  if (comment.parent !== undefined) {
+    comment.parent = comment.parent.id
+    if (comment.toUser !== '') {
+      comment.toUser = comment.toUser.id
+    }
+  }
+
   return request({
     url: '/comments/create/change',
     method: 'post',
     data: comment
   })
 }
-
